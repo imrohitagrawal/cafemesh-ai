@@ -1,0 +1,12 @@
+flowchart TB
+  Recommend["POST /api/recommend: deterministic facts first"] -.-> Taste["TasteSafetyAgent · fixed helper prompt"]
+  Recommend -.-> Visit["VisitOrderAgent · fixed helper prompt"]
+  Taste -.-> Menu["menu_facts: data.MENU"]
+  Visit -.-> Facts["visit_facts: QUEUE / ZONES"]
+  Menu -.-> Concierge["Concierge: helper outputs + request + authoritative candidates; root registers three sub-agents"]
+  Facts -.-> Concierge
+  Concierge -.-> Guard["Summary guard; record activity; return structured result"]
+  Owner["GET /api/owner: auth and deterministic metrics"] -.-> Ops["OpsOwnerAgent"]
+  Ops -.-> Tool["owner_facts(days): service.metrics"]
+  Tool --> Check["Require completed tool and nonempty text"]
+  Check --> Brief["Computed metrics + brief or explicit error"]

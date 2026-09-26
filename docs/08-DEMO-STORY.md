@@ -7,7 +7,7 @@
 3. Choose a candidate only if its own evidence permits preview; show price, queue, and estimate. Confirm explicitly; point out the demo label.
 4. Open Operations: same order appears. Review a grounded suggestion and accept or reject; show the audit event and no claimed execution.
 5. Open Owner: shared order/event metrics and explicit time window; insufficient data stays explicit.
-6. Submit feedback for oat milk, low sweetness, no caramel. Return for a recommendation that reflects these preferences while the peanut restriction remains unchanged.
+6. Submit feedback for oat milk, low sweetness, no caramel. Return for a recommendation that reflects these preferences while explicitly supplying the peanut restriction again. Feedback does not learn safety fields, but the current API does not automatically enforce a stored allergy profile across every request (audit F02).
 
 ## Extended walkthrough
 

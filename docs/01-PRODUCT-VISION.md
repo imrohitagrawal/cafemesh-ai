@@ -14,6 +14,8 @@ Trust, observability, and controlled learning span all five experiences.
 
 The detailed delivery roadmap separates complete end-to-end product slices from shared horizontal enablers and defines scale-up triggers. See [the roadmap index](roadmap/README.md) and [engineering practice review](13-ENGINEERING-PRACTICES.md) for what exists today versus what must be added for a café pilot.
 
+For a diagram and feature-by-feature mapping of the complete product, current code coverage, and acceptance criteria, see [end-to-end capability coverage](14-END-TO-END-CAPABILITIES.md). Existing implementation gaps remain in the [code-first audit](architecture/ARCHITECTURE-AUDIT.md).
+
 ## Complete customer journey
 
 Discover → plan → personalize → validate constraints → coordinate travel and preparation → confirm an order → prepare → arrive → seat → experience → get help if needed → feedback → learn → operate → analyze → improve → return.

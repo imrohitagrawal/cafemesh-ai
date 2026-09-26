@@ -1,0 +1,213 @@
+{
+  "commit": "76134e6099c4abd0c04de06227b91e7944cc0a6e",
+  "review_type": "static source inventory at pinned commit; publication verification recorded separately in README.md",
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/api/health",
+      "handler": "health",
+      "line": 116,
+      "reviewer_dependency": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/config",
+      "handler": "public_config",
+      "line": 119,
+      "reviewer_dependency": false
+    },
+    {
+      "method": "POST",
+      "path": "/api/auth/session",
+      "handler": "google_session",
+      "line": 123,
+      "reviewer_dependency": false
+    },
+    {
+      "method": "POST",
+      "path": "/api/places/search",
+      "handler": "places_search",
+      "line": 128,
+      "reviewer_dependency": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "handler": "status",
+      "line": 173,
+      "reviewer_dependency": false
+    },
+    {
+      "method": "POST",
+      "path": "/api/recommend",
+      "handler": "recommendation",
+      "line": 243,
+      "reviewer_dependency": false
+    },
+    {
+      "method": "POST",
+      "path": "/api/preview",
+      "handler": "order_preview",
+      "line": 265,
+      "reviewer_dependency": false
+    },
+    {
+      "method": "POST",
+      "path": "/api/confirm",
+      "handler": "order_confirm",
+      "line": 268,
+      "reviewer_dependency": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/ops",
+      "handler": "operations",
+      "line": 271,
+      "reviewer_dependency": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/ops/decision",
+      "handler": "decision",
+      "line": 279,
+      "reviewer_dependency": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/ops/order/{order_id}/transition",
+      "handler": "transition",
+      "line": 284,
+      "reviewer_dependency": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/owner",
+      "handler": "owner",
+      "line": 297,
+      "reviewer_dependency": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/preferences",
+      "handler": "get_preferences",
+      "line": 337,
+      "reviewer_dependency": false
+    },
+    {
+      "method": "POST",
+      "path": "/api/feedback",
+      "handler": "feedback",
+      "line": 340,
+      "reviewer_dependency": false
+    },
+    {
+      "method": "POST",
+      "path": "/api/reset",
+      "handler": "reset",
+      "line": 350,
+      "reviewer_dependency": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/vision",
+      "handler": "vision",
+      "line": 353,
+      "reviewer_dependency": false
+    }
+  ],
+  "tables": [
+    "preferences",
+    "orders",
+    "proposals",
+    "prep_observations",
+    "feedback",
+    "events",
+    "decisions",
+    "activity"
+  ],
+  "agent_definition_count": 4,
+  "test_function_count": 29,
+  "test_functions": [
+    "test_unknown_cross_contact_escalates_and_blocks_preview",
+    "test_explicitly_cleared_cold_brew_can_be_previewed_confirmed_once",
+    "test_revalidation_catches_price_stock_and_unknown_item",
+    "test_feedback_persists_bounded_tastes_without_changing_safety",
+    "test_manager_decision_is_audited_and_does_not_execute",
+    "test_owner_metrics_show_insufficient_data_then_shared_order",
+    "test_operations_observability_uses_only_persisted_records",
+    "test_observability_distinguishes_provider_failures_review_and_measured_samples",
+    "test_order_transition_and_manager_guards",
+    "test_prompt_injection_is_plain_text_and_cannot_authorize_action",
+    "test_constraints_budget_diet_closed_cafe_and_missing_price",
+    "test_missing_queue_and_visit_time_are_not_fabricated",
+    "test_stale_safety_and_changed_stock_block_confirmation",
+    "test_ready_requires_measured_time_then_calibrates_from_three_observations",
+    "test_provider_state_is_truthfully_labeled",
+    "test_quote_is_bound_to_recommendation_and_exact_preview",
+    "test_google_signin_is_required_for_deployed_review_views",
+    "test_public_deployment_fails_closed_when_oauth_client_is_missing",
+    "test_allergy_safety_claim_from_live_model_is_withheld",
+    "test_blank_recommendation_is_rejected_and_hot_search_is_grounded",
+    "test_unmatched_menu_query_is_explicit_and_does_not_match_substrings",
+    "test_allergy_requests_withhold_free_form_live_summary",
+    "test_places_uses_typed_or_one_time_coordinates",
+    "test_places_applies_typed_location_to_both_discovery_and_route",
+    "test_versioned_menu_retrieval_goldens",
+    "test_live_places_and_routes_are_distinct_from_demo_origin",
+    "test_live_places_missing_key_fails_without_synthetic_substitution",
+    "test_firestore_snapshot_round_trips_and_rejects_lost_update",
+    "test_firestore_backend_requires_project"
+  ],
+  "source_sha256": {
+    "CONTRIBUTING.md": "1ca1099c1f1c80a3cb914af8ef7fc9b8e0992a17111eab1bd1de47cd70cc3772",
+    "README.md": "031c7d8be3dab2e2537301295ebb4bbacf2b9ee82f7d13f337287e9b710a5b13",
+    "Makefile": "475674acbfd6b2036a44441116819d8fb5296b831e7dddfabfcf495934d2c8d1",
+    ".env.example": "23d0064892dac9e96c65c79a9226a8ca8e3f0fb4dd955b310ffac776d66d2f36",
+    "SECURITY.md": "2876e5bb0cb4c16452a5106b09f1ee823f5ab5388eb4e1c61d98456bacbeac29",
+    "Dockerfile": "d7bbfa91e48a3412fa343a70efadd97d4e17c536b0454f75270dda5afa31edb5",
+    ".agents-cli-spec.md": "4018e1add08ec5f53eb013b902ce4916fadc3ff5633bccad8ee9322c73f6b8c1",
+    "pyproject.toml": "696698d1697283ff7c3766ca115185861fb1d2561c6f8f6f61eb2a49da0263b8",
+    "NOTICE": "938e68a4383e86672aa4d8658fb027f560afafe615106982ff981c8bf2f555cc",
+    "AGENTS.md": "317214b334f12863104ba171332133d4b4142ae7f4de122f96e94c6be1b38377",
+    "docs/02-HACKATHON-SCOPE.md": "b12401432961d945e392214bcc54d2245e6384ae3c968e068272bc107265cfff",
+    "docs/12-RETRIEVAL-AND-RAG.md": "6d1f1b18fefac93b750809f52182bb0b6aecdb32196f4f42407d2ceb7d6c7a37",
+    "docs/01-PRODUCT-VISION.md": "64ccdd3050fb462db55e3b6b54decf56f06f05cd22dc0ef8d62e12fd99b803c2",
+    "docs/07-LEARNING-LOOP.md": "281f516a11ead022a9ce2d8eda485a7c0356b03d942f42bad6eb33ee2b772c37",
+    "docs/06-SAFETY-AND-EVALUATION.md": "8d03a54a9cf603c27568d9721ce86ab1b6dc879584e242d15cec83678bfba5dc",
+    "docs/10-DECISIONS-AND-ASSUMPTIONS.md": "fc5d83ba2bac4167d2c18bf86c58f0ea65200283d3d44c9d5511897a1e48a7fd",
+    "docs/08-DEMO-STORY.md": "b4a2715e0dcb7a0f603583561499cfefb31fc69a7ba18bc8520b37fee76bcce6",
+    "docs/04-ARCHITECTURE.md": "24288103f9ec246fa0aa58068eb577ed8dd6634bdd7c9043887ed9dbf0755308",
+    "docs/09-IMPLEMENTATION-PLAN.md": "a50b488a7ddd1f9499f004e00bf93fc31b8714480856d31c32826b50965a7345",
+    "docs/03-PRD.md": "214b65bfb68dab7e160009d719d5fa397819212a491f78b70c2b75f2546e3f5e",
+    "docs/11-VERIFICATION-REPORT.md": "8d6e3f283511bd0ff1e47a55f8688ffd64309cc3b57d88700a0b60d2e1f1c9c8",
+    "docs/13-ENGINEERING-PRACTICES.md": "906b9eeaffa2f2c87b09a1e88a389d229059547f813308bcfeb967d9148b40be",
+    "docs/CLOUD-RUN.md": "cb7c595d3ddf4d9f7f082b1fefb6761cbfe4cfe6fbc535020ec614d4020d3397",
+    "docs/05-AGENT-CONTRACTS.md": "c41b1afa88a5a22df4d6f9c74ba9cc64300874b3c9aa0e0383be37fdf2544bb7",
+    "tests/test_app.py": "1e9d591c800c22d3f90a1df9e9fb297147914858710b9e6c5bc014bcbc0ceec5",
+    "tests/test_firestore_snapshot.py": "689a94808bbd6286dadfd725a13ac13af8b7b7309b9890f36c47b7f930a477e4",
+    "evals/policy-cases.json": "3cff87a07fd732976a8538d1267276b46ebd9b8dd999ddfdc3df784ccc77538f",
+    "evals/menu-retrieval-goldens.json": "903d005c649973724654a14a6c003452603bb2342fc578a31f70fc43e3a6b433",
+    "frontend/.env.example": "80d3c7f87ac6c87e36fb5a909459bf9667551ac033eb4ccf8fd9c3d0d9fec992",
+    "frontend/package.json": "cb05a7eaa32d4e7b23cc7d85690f2109159ca979bd13a3d8af37279208d25ccc",
+    "frontend/vite.config.ts": "9e074341e81d774b2c042cf5e3d61132dfcb615bb6658b51be99095362c57533",
+    "scripts/render_engineering_slides.py": "9a5cb86a7051d5a64476708909dfd34d3f9dcff232bdf61d4da009e32f4a1022",
+    "scripts/judge_demo_smoke.py": "c4cf6574a92bb4c8ba6a02ba3b340281ab8cc7a0d9f5643a96785bc357f88d45",
+    "scripts/generate_voiceover.py": "6ad1620f73c7fc33cc73f10a802634be64687648d06b38587c05fa5c825dc2da",
+    "scripts/render_demo_video.py": "7bceeced90ce1dd5b6bc640218a4317fdeb58cba2ac674d3561a3d6a01bb1540",
+    "scripts/prepare_supplied_screenshots.py": "3b627da812f0bd0782c66d14039f2bedb17cbcaf278908e0741596667edf42fa",
+    "docs/roadmap/README.md": "9d18b32040e07dc919ce8a18bb8ec40906b0dce3072eaf46f1074cbdde07a403",
+    ".github/workflows/quality.yml": "f241d4a52aee9f8bc5b3825bf58c662017f4bf4fa039c65bd1de0f7912dc6b58",
+    "deployment/cloudflare/worker.js": "b1ec857daf40cd67f952ab77826ef593d28c507323d76f19d73d8764ef62c495",
+    "backend/cafemesh/db.py": "a1532f990a543e768113eac53ef2c80ba7e16fc4aa9dfd0f9e1360b2d615b385",
+    "backend/cafemesh/observability.py": "b58694e8062ea1db1b651a053bc7eba6f9725d96c3461bb256fc945f8eef22fc",
+    "backend/cafemesh/main.py": "e15c9af9af5dbc10170b72ab003465ae41aaf2c242d19c0f8884e6b0bad52ad8",
+    "backend/cafemesh/data.py": "ff61a25865fa357362ea50a0f952bd59985c054bd537ad6f60f1a59a543459a4",
+    "backend/cafemesh/service.py": "9cff424be1b4f3da8c336dd657123055e8d3b44eb4904cfea5ad6e194a0453f8",
+    "backend/cafemesh/config.py": "3fc48e990f332134fb5e5b7e4d57570cbf066e9476383a516eafadcd469e58f4",
+    "backend/cafemesh/agents.py": "8e97a3e53eaf793129850200d9ed614bfe09e3483b96eb4727ddf44e070f7f76",
+    "backend/cafemesh/__init__.py": "0ad91a42585f633a43a63476a621cb2a1e6012a7d64c5b35ece530797c69d6b6",
+    "frontend/src/App.tsx": "cf8fa52cd5cfbf3b6e117580f8934c77474980f6dfaf59474c6c77f9c8cb7570",
+    "frontend/src/main.tsx": "f3b3b74f327cd02874b15dd52c541cd6b3f1ebff042681357cd3ee3fad95bb1c",
+    "frontend/src/style.css": "2deeeeae1fe73a08fd14fa941b8af453ebfc7890b372786723bad84db1fe89a5"
+  }
+}

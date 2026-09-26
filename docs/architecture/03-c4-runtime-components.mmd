@@ -1,0 +1,19 @@
+flowchart TB
+  UI["React experiences · Customer / Operations / Owner / Vision"] -->|"HTTPS / JSON"| API
+  subgraph Application["FastAPI application · backend/cafemesh"]
+    API["main.py · routes, schemas and handler checks, reviewer auth, Maps, feedback, transitions, decisions, reset, provider status, ADK and guards"]
+    Domain["service.py · deterministic recommendation, preview, confirmation and metrics"]
+    Ops["observability.py · operational metrics"]
+    Agents["agents.py · Concierge, TasteSafety, VisitOrder, OpsOwner · read-only tools"]
+    Facts["data.py · structured synthetic menu, café, queue, zones"]
+    Store["db.py · SQLite / Firestore snapshot · events, activity, proposals and orders"]
+    API -->|"Direct feedback, transition, decision and activity writes"| Store
+    API --> Domain
+    API --> Ops
+    API -.->|"Optional execution"| Agents
+    Domain --> Facts
+    Domain --> Store
+    Ops --> Store
+    Agents -.->|"owner_facts calls metrics"| Domain
+    Agents -.->|"menu_facts / visit_facts"| Facts
+  end

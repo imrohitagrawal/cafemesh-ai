@@ -25,7 +25,9 @@ The roadmap is further organized into customer/team/owner **vertical product sli
 - **Administration:** location onboarding, versioned menu/tax/safety records, staff roles/shifts, integration health, audit/support, customer consent/data controls, retention/deletion, and notifications.
 - **Platform:** POS, payments, loyalty, multilingual Gemini Live voice, BigQuery, recommendation models, controlled experiments, Model Armor, and production-scale tenancy/authentication. See `01-PRODUCT-VISION.md` for the full capability map and prerequisites.
 
-## Acceptance
+## Acceptance requirements and current gaps
+
+The following are acceptance requirements, not a claim that every guarantee is implemented. The [audit](architecture/ARCHITECTURE-AUDIT.md) found missing safety-age rechecks at confirmation, incomplete constraint continuity, no stock reservation or proposal TTL, and timing/idempotency limitations. These remain open implementation work; see the [developer handoff](architecture/DEVELOPER-HANDOFF.md).
 
 - All customer, operations, and owner screens read/write the same persisted records.
 - Unknown/stale safety evidence blocks confirmation and clearly requests staff review.

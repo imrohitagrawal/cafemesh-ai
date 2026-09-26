@@ -1,0 +1,8 @@
+flowchart LR
+  Customer["Customer"] -->|"Discover, preview, confirm, feedback"| App["CaféMesh AI"]
+  Manager["Café manager"] -->|"Review operations, transition orders, record decisions"| App
+  Owner["Café owner"] -->|"Windowed metrics and owner brief"| App
+  App -->|"Verify ID tokens"| Identity["Google Identity"]
+  App -->|"Search and walking route"| Maps["Google Maps: Places and Routes"]
+  App -.->|"Optional advisory inference via in-process ADK"| Vertex["Vertex AI / Gemini"]
+  App -->|"Read and persist synthetic state"| Firestore[("Cloud Firestore: bounded single snapshot")]

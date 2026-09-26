@@ -10,6 +10,8 @@ Owner: choose an explicit window → see metrics derived from orders/events/feed
 
 ## Functional requirements
 
+These are intended requirements. The [code-first audit](architecture/ARCHITECTURE-AUDIT.md) records unmet guarantees, including safety freshness at confirmation, constraint continuity, inventory, timing, and recommendation-stage opening/price checks. The [capability matrix](14-END-TO-END-CAPABILITIES.md) maps the full product to current coverage and future acceptance criteria.
+
 1. Capture canonical request constraints: 40 minutes; vegetarian; severe peanut allergy; cold drink under ₹350; quiet work seat.
 2. Recommend only available, priced, open-café candidates; show evidence, price, timing, and safety review status.
 3. Detect dietary mismatch, known allergens, unknown/stale ingredients/cross-contact, budget failure, missing price, closed café, missing queue and unknown item without inventing values.
@@ -24,7 +26,7 @@ The reset baseline contains four clearly synthetic orders (three historical and 
 
 ## Product boundaries
 
-All state is synthetic and isolated. Staff-review confirmations and manager actions are demo actions, not real safety certification or real-world execution. No payment, POS, authentication, or third-party business write occurs.
+All state is synthetic and isolated. Staff-review confirmations and manager actions are demo actions, not real safety certification or real-world execution. Google ID-token authentication exists for configured reviewer routes; application role/tenant authorization remains planned. No payment, POS, or third-party café business write occurs.
 
 ## Target product requirements beyond this MVP
 

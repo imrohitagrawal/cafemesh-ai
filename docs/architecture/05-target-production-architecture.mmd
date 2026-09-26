@@ -1,0 +1,16 @@
+flowchart TB
+  Clients["Companion · Connect · Operations · Owner · Administration"] --> Edge["Edge + WAF + rate limits + identity + tenant RBAC"]
+  Edge --> API["Versioned API on Cloud Run · workflow coordination"]
+  API -.-> AI["ADK / Gemini · bounded tools · Model Armor and input/output controls"]
+  API --> Policy["Deterministic authorization · human approval · idempotency"]
+  API -.-> Retrieval["Governed document retrieval / citations · Maps adapters"]
+  AI -.->|"Proposals only"| Policy
+  Retrieval -.->|"Access-controlled evidence"| Policy
+  Policy --> Domain["Catalog · inventory reservation · orders / transactional outbox"]
+  Domain --> Integrations["Planned POS, payments, loyalty, notifications, voice and arrival adapters"]
+  Domain --> Data[("Tenant-scoped Firestore or suitable SQL")]
+  Data -->|"Reliable outbox / export"| Events["Event pipeline · BigQuery analytics"]
+  Events --> Evals["Versioned evaluations · replay · experiments"]
+  Evals --> Human["Human review / release gate"]
+  Human -->|"Approved changes"| AI
+  API --> Telemetry["Cloud Logging / Monitoring / traces · SLOs · cost and quality alerts"]

@@ -1,5 +1,7 @@
 # CaféMesh AI roadmap
 
+For a visual end-to-end product journey, current code coverage, and feature acceptance criteria, see [the capability map](../14-END-TO-END-CAPABILITIES.md). Existing implementation gaps and verification tasks are tracked in the [developer handoff](../architecture/DEVELOPER-HANDOFF.md).
+
 This roadmap converts the product vision into deliverable increments. It is a planning contract, not a statement that future capabilities are already built. Product outcomes are delivered in **vertical slices** (a usable end-to-end capability across UI, API, policy, data, and evaluation); shared foundations are sequenced as **horizontal enablers** only where multiple slices need them.
 
 ## Roadmap at a glance

@@ -2,12 +2,14 @@
 
 This is a review of the current public hackathon demo against practices expected in a maintained AI product. It distinguishes controls already implemented from work required before a café pilot. It is intentionally candid: passing the current tests does not certify production safety or reliability.
 
+The [code-first audit](architecture/ARCHITECTURE-AUDIT.md) and [developer handoff](architecture/DEVELOPER-HANDOFF.md) qualify the controls below and record 15 specific implementation/documentation gaps. The [capability matrix](14-END-TO-END-CAPABILITIES.md) supplies the end-to-end product view.
+
 ## Practices present in this repository
 
 - **Reproducible application dependencies:** `uv.lock` and `frontend/package-lock.json` are checked in; Docker uses `npm ci` and the locked Python environment. `make verify` covers backend tests, TypeScript checking, and a production frontend build.
-- **Layered policy for consequential actions:** Pydantic validates HTTP inputs; deterministic backend rules own constraints, recommendation eligibility, order confirmation, idempotency, order transitions, and manager decision records. Agents have read tools, not privileged write tools.
-- **Grounding and uncertainty:** recommendations expose structured records and evidence IDs; unknown/stale allergy evidence requests staff review; no-match remains no-match; no allergy-safe guarantee is made.
-- **Explicit provider states:** live, demo, unavailable, and error states are surfaced; provider failure is not silently converted to demo success.
+- **Layered policy for consequential actions:** Selected routes use Pydantic schemas and others use handler checks. Deterministic backend rules own constraints, recommendation eligibility, order confirmation, idempotency, order transitions, and manager decision records; coverage differs by stage (F01–F05/F10/F15). Agents have read tools, not privileged write tools.
+- **Grounding and uncertainty:** recommendations expose structured records and evidence IDs; recommendation checks unknown/stale allergy evidence, but preview/confirmation lack the repeated age check; no-match remains no-match; no allergy-safe guarantee is made.
+- **Explicit provider states:** live, demo, unavailable, and error states are surfaced; configured model failure is not silently converted to demo success. Status combines configuration and last observations; it is not a comprehensive fresh health check (F12).
 - **AI regression evidence:** deterministic safety tests and versioned menu retrieval cases exist. Rejected/error activity can be reviewed; human review and regression verification are required before a case or policy is promoted.
 - **Shared demo events and observability:** Customer, Operations, and Owner views derive from shared stored records; operations activity, errors, tool latency, decisions, and measured preparation outcomes are inspectable.
 - **Secret boundaries:** `.env`, databases, virtual environments, caches, and build output are ignored by Git. Runtime credentials are configured server-side; the public app contains no server API key.

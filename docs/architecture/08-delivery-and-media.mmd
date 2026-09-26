@@ -1,0 +1,10 @@
+flowchart TB
+  Source["GitHub source and locked dependencies"] --> CI["Actions: verify, smoke, npm/pip audits, Docker build, parallel history secret scan"]
+  CI -->|"Operator-controlled; no CI deployment step"| Deploy["Manual gcloud source deployment · Cloud Build"]
+  Deploy --> Run["Cloud Run: FastAPI + SPA + saved assets"]
+  Narration["Narration scripts and sanitized scenes"] -.-> TTS["Google Cloud TTS · build time only"]
+  TTS --> Audio["MP3 + paragraph timing JSON"]
+  Audio --> Render["Screenshot/slide composition · Chromium + FFmpeg/ffprobe"]
+  Render --> Bundle["frontend/public media bundled by Vite"]
+  Audio --> Bundle
+  Bundle --> Run

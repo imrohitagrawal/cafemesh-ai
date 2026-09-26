@@ -1,0 +1,15 @@
+flowchart TB
+  Govern["Admin: onboard and govern facts · planned"] --> Plan["Customer: discover and plan · mixed"]
+  Plan --> Choose["Constrain, choose, preview and confirm · mixed"]
+  Choose --> Fulfill["Team: transact stock, prepare, arrive and serve · mixed"]
+  Fulfill --> Recover["Help, cancellation, refund and recovery · mostly planned"]
+  Recover --> Return["Customer: feedback, data control and return · mixed"]
+  Return --> Analyze["Manager / owner: outcomes and metrics · mixed"]
+  Analyze --> Improve["Human review and controlled improvement · mostly planned"]
+  Improve --> Govern
+  Connect["Optional Connect: events, tables, groups and consent · planned"] --> Plan
+  Connect --> Return
+  Gate["Pilot gates: tenancy, governed safety, transactions, privacy and recovery · planned"] --> Govern
+  Gate --> Fulfill
+  AI["Shared: bounded AI, evaluations, telemetry and release gates · mixed"] --> Choose
+  AI --> Improve

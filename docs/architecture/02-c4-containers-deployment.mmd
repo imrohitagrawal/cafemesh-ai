@@ -1,0 +1,14 @@
+flowchart TB
+  Browser["React SPA · browser"] -->|"HTTPS"| Edge["Cloudflare Worker · custom-domain proxy"]
+  Browser -->|"Sign-in / ID token"| Identity["Google Identity · OAuth Testing"]
+  subgraph Hosted["Hosted service and state · asia-south1"]
+    API["FastAPI on Cloud Run · serves SPA and JSON API · in-process ADK"]
+    Snapshot[("Firestore · single SQLite snapshot · synthetic state")]
+    API -->|"Read / commit with compare-and-set"| Snapshot
+  end
+  Secrets["Secret Manager: Maps key"] -->|"Runtime injection"| API
+  Edge -->|"Forward requests"| API
+  API -->|"Verify reviewer ID tokens"| Identity
+  API -->|"Server-side requests"| Maps["Places + Routes"]
+  API -.->|"Optional inference"| Vertex["Vertex AI / Gemini"]
+  API -->|"Local mode instead of Firestore"| Local[("SQLite file")]

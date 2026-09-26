@@ -1,0 +1,9 @@
+flowchart TB
+  Fixtures["data.py: CAFE, MENU, QUEUE, ZONES · code fixtures"] --> App["main.py / service.py / observability.py"]
+  App --> Records["Eight tables: orders, proposals, preferences, feedback, prep_observations, events, decisions, activity"]
+  Records --> Selector["db.py selects storage backend"]
+  Selector -->|"Hosted"| Firestore[("Cloud Firestore: single serialized SQLite snapshot; CAS; 700000-byte decoded limit")]
+  Selector -->|"Local"| SQLite[("SQLite file")]
+  Records --> Taste["Bounded preference weights; safety excluded"]
+  Records --> Timing["Measured-only timing calibration; latest 20; default minimum 3"]
+  Records --> Review["Error/review activity signals; no automatic promotion"]

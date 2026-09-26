@@ -1,0 +1,12 @@
+flowchart TB
+  Input["Validate POST /api/recommend and explicit constraints"] --> Policy["Structured lexical retrieval and deterministic policy · record evidence/events"]
+  Policy -->|"Deterministic result; skip generation if no candidates"| Response["Candidates, evidence, eligibility, staff-review and provider status"]
+  Policy -.->|"Configured and candidates exist"| AI["Optional ADK / Gemini · read-only tools"]
+  AI -.-> Guard["Model summary guard · withhold declared allergy context or matched safety wording"]
+  Guard -.-> Response
+  AI -->|"Configured failure"| Error["Explicit 502 / 503 / 504 · no silent demo fallback"]
+  Response -->|"Select eligible candidate"| Preview["Validate and persist exact preview"]
+  Preview --> Human["Customer explicitly confirms proposal"]
+  Human --> Gate["Backend action gate · prior idempotency key replays first · unchanged unused proposal · implemented checks only; no age/TTL recheck"]
+  Gate -->|"Checks pass"| Commit["Commit synthetic order and event"]
+  Gate -->|"Rejected"| Reject["No new order · return error"]

@@ -25,6 +25,8 @@ The videos use paragraph-matched point-in-time app screenshots and narration. Th
 - **Vision:** review the full product journey, live/demo/planned boundaries, architecture, and roadmap.
 - **Google services:** Cloud Run hosting, Google Identity ID-token verification for protected reviewer routes, live Places/Routes, optional ADK/Gemini through Vertex AI, Firestore-backed synthetic demo state, and saved Indian-English Google TTS narration.
 
+See the [nine-view architecture atlas](docs/architecture/README.md), [end-to-end capability coverage](docs/14-END-TO-END-CAPABILITIES.md), and [developer gap handoff](docs/architecture/DEVELOPER-HANDOFF.md) for the code-first review.
+
 See [product scope](docs/02-HACKATHON-SCOPE.md), [architecture](docs/04-ARCHITECTURE.md), and [verification evidence](docs/11-VERIFICATION-REPORT.md) for exact status and caveats.
 
 ## Run locally
@@ -66,11 +68,14 @@ make verify       # Backend tests, TypeScript check, Vite production build
 make demo-smoke   # Rehearses the synthetic Customer → Ops → Owner → feedback flow twice
 ```
 
-Current evidence and limitations are recorded in [docs/11-VERIFICATION-REPORT.md](docs/11-VERIFICATION-REPORT.md). The current deterministic retrieval goldens and policy cases are under [`evals/`](evals/). These are bounded regression evidence, not proof of total safety, broad semantic retrieval quality, or a production SLO.
+Current evidence and limitations are recorded in [docs/11-VERIFICATION-REPORT.md](docs/11-VERIFICATION-REPORT.md). The three deterministic retrieval goldens under [`evals/`](evals/) are loaded by tests; `policy-cases.json` is a documented inventory, not an executed parameterized suite. Existing test assertions provide bounded regression evidence, not proof of total safety, broad semantic retrieval quality, or a production SLO.
 
 ## Architecture, practices, and roadmap
 
-- [System context, C4 containers/components, runtime sequences, data boundaries, and target architecture](docs/04-ARCHITECTURE.md)
+- [System context, C4 containers/components, action flow, persistence, agents, delivery, and target architecture](docs/04-ARCHITECTURE.md)
+- [Complete product journey and feature capability coverage](docs/14-END-TO-END-CAPABILITIES.md)
+- [Code-first audit: 15 findings and source evidence](docs/architecture/ARCHITECTURE-AUDIT.md)
+- [Developer handoff: verification cases and suggested fixes](docs/architecture/DEVELOPER-HANDOFF.md)
 - [Roadmap overview: horizons, vertical product slices, horizontal enablers, scaling triggers, and agent harness direction](docs/roadmap/README.md)
 - [Café pilot slice detail and cross-cutting prerequisites](docs/roadmap/README.md#vertical-product-slices)
 - [Agent harness, self-healing, and controlled self-improvement applicability](docs/roadmap/README.md#agentic-ai-self-improvement-and-operational-recovery)
@@ -90,6 +95,7 @@ frontend/src/        React + TypeScript UI
 tests/               Backend policy, API, and storage tests
 evals/               Synthetic deterministic policy/retrieval cases
 docs/                Product, contracts, architecture, safety, release evidence, roadmap
+docs/architecture/   Nine diagram sets, editable sources, code inventory, audit, developer handoff
 docs/roadmap/        Horizontally and vertically sliced future plan and scale triggers
 scripts/             Demo rehearsal, narration, screenshot and video workflows
 media/               Narration sources, timing manifests, sanitized screenshot scenes
@@ -101,7 +107,7 @@ deployment/          Cloudflare origin-routing configuration
 - This is a public demo with synthetic business data. Do not add customer records, café credentials, provider keys, OAuth secrets, or unredacted personal screenshots.
 - `.env`, local databases, virtual environments, package caches, and build output are Git-ignored. `.env.example` contains placeholders only.
 - Runtime credentials belong in Google Secret Manager or workload identity/ADC; use least privilege and server-side access.
-- Google sign-in currently identifies authorized demo reviewers; it is not production café role/tenant authorization.
+- Google sign-in verifies reviewer identity when configured; there is no application reviewer allowlist or café role/tenant authorization. The documented OAuth Testing audience is an external restriction.
 - `gitleaks` and lockfile/package audits should be run before public releases. Review the full release checklist in [engineering practices](docs/13-ENGINEERING-PRACTICES.md).
 - GitHub Actions runs tests/build, the connected demo rehearsal, JavaScript dependency audit, Docker build, and a history-aware secret scan on push/PR and weekly.
 - The app does not place real orders, charge payments, update a POS, reserve real seating, or dispatch staff.
