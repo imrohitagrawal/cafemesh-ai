@@ -10,7 +10,7 @@ OAuth branding and Google's required API Services User Data Policy agreement hav
 
 ## Deployment
 
-The public synthetic demo is served by Cloud Run service `cafemesh-ai` in `asia-south1`; the latest verified revision is `cafemesh-ai-00012-f7q`. The public link is `https://cafemesh.stackclimb.com`, routed through the Cloudflare Worker `cafemesh-origin-proxy` to the canonical origin `https://cafemesh-ai-lbqubrb5jq-el.a.run.app`. `/api/health` and the custom-domain app have returned HTTP 200 on 26 September 2026. Revision `cafemesh-ai-00012-f7q` serves 100% of traffic.
+The public synthetic demo is served by Cloud Run service `cafemesh-ai` in `asia-south1`; the latest verified revision is `cafemesh-ai-00013-c85`. The public link is `https://cafemesh.stackclimb.com`, routed through the Cloudflare Worker `cafemesh-origin-proxy` to the canonical origin `https://cafemesh-ai-lbqubrb5jq-el.a.run.app`. `/api/health` and the custom-domain app have returned HTTP 200 on 26 September 2026. Revision `cafemesh-ai-00013-c85` serves 100% of traffic.
 
 The owner OAuth client authorizes the Cloud Run origin and custom domain. A live Google Identity Services attempt from the canonical URL reached Google's account chooser after the origin was added, and the owner test account signed in successfully. OAuth is still External / Testing, so only its listed tester can access protected views.
 

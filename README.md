@@ -4,6 +4,8 @@
 
 CaféMesh AI is a Google Cloud hosted hackathon application connecting customer discovery and constrained menu guidance with café operations and owner insight. It includes a public customer demo, Google-signed reviewer views, a shared synthetic-data workflow, live Google Maps discovery, and two narrated walkthroughs. The repo documents what is implemented, simulated, unavailable, and planned; the roadmap is not a claim of shipped functionality.
 
+[![Quality workflow](https://github.com/imrohitagrawal/cafemesh-ai/actions/workflows/quality.yml/badge.svg?branch=master)](https://github.com/imrohitagrawal/cafemesh-ai/actions/workflows/quality.yml)
+
 ## Try the application and media
 
 - **Public source repository:** [github.com/imrohitagrawal/cafemesh-ai](https://github.com/imrohitagrawal/cafemesh-ai)
