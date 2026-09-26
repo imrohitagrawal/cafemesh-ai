@@ -1,0 +1,26 @@
+[
+  {
+    "id": "specific-hot-espresso",
+    "message": "hot espresso under ₹350",
+    "constraints": {"budget": 350, "vegetarian": true, "cold": false, "allergies": [], "max_total_minutes": 40},
+    "eligible_ids": ["espresso"],
+    "review_ids": [],
+    "forbidden_ids": []
+  },
+  {
+    "id": "canonical-peanut-allergy-visit",
+    "message": "I have 40 minutes. I am vegetarian and severely allergic to peanuts. I want a cold drink under ₹350 and somewhere quiet to work.",
+    "constraints": {"budget": 350, "vegetarian": true, "cold": true, "allergies": ["peanuts"], "max_total_minutes": 40},
+    "eligible_ids": ["cold-brew"],
+    "review_ids": ["cappuccino", "hot-latte", "iced-matcha", "masala-chai", "mocha"],
+    "forbidden_ids": ["mocha"]
+  },
+  {
+    "id": "unsupported-smoothie",
+    "message": "smoothie",
+    "constraints": {"budget": 350, "vegetarian": true, "cold": true, "allergies": [], "max_total_minutes": 40},
+    "eligible_ids": [],
+    "review_ids": [],
+    "forbidden_ids": []
+  }
+]

@@ -1,0 +1,1 @@
+"""CaféMesh AI application."""

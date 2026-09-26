@@ -1,0 +1,39 @@
+# Verification report
+
+Last verified: 2026-09-26. All café menu, safety, inventory, occupancy, customer, order, and manager records in this public demo are synthetic. No real café order or business-system write was performed.
+
+## Executed checks
+
+- `make verify`: 29 backend tests passed; TypeScript project checks and Vite production build passed. Two third-party deprecation warnings remain.
+- `make demo-smoke`: canonical synthetic customer → Operations → Owner → feedback journey passed 2/2 rehearsals.
+- Public CI commands: locked `uv sync`, `npm ci`, `npm audit` (0 vulnerabilities), and `pip-audit` (no known vulnerabilities) passed with the checked-in lockfiles. The audit found vulnerable Starlette 0.52.1 before release; dependencies were updated to patched Starlette 1.7.0, Google ADK 1.39.1, and Google Gen AI 2.25.0, after which the test suite passed again.
+- Docker: image built from the lockfile and ran locally; `/api/health` returned `{"status":"ok","application":"CaféMesh AI","dataset":"synthetic"}`. This is a local container check, separate from the hosted Cloud Run deployment.
+- Public source preflight: Gitleaks scanned the exact staged snapshot with zero findings. Apple Vision OCR scanned all 26 curated screenshot derivatives for email-like strings and found none. The Cloud Build upload manifest included only `.env.example` placeholders and retained the video/audio assets needed by the app; local `.env`, skill caches, local databases, build output, and intermediate video frames were excluded.
+- Deterministic policy tests cover allergen conflict, unknown cross-contact, dietary mismatch, budget violation and missing price, nonexistent items, closed cafés, missing queue data, tool failure, duplicate confirmation, changed confirmation facts, prompt injection, preference persistence and allergy non-learning, manager approval, owner metrics, typed-location contracts, no-match behavior, and retrieval golden cases.
+- Retrieval goldens: 3 checked cases for the canonical constrained request, hot espresso, and unsupported smoothie. Menu matching is lexical over structured records with deterministic policy filters; it is not semantic/vector retrieval or RAG. The case set is small and does not establish broad recommendation quality.
+- Cloud Run: deployed revision `cafemesh-ai-00011-ck2` is Ready and serves 100% of traffic in `asia-south1`, project `dependable-keep-509808-j9`.
+- Public custom domain `https://cafemesh.stackclimb.com`: `/api/health` and `/api/config` returned HTTP 200. Config reports Google auth required, Maps configured, Firestore storage, and synthetic dataset. `/api/ops` returned 401 without an ID token, as expected.
+- Both public versioned video URLs returned HTTP 200 with `video/mp4`: product 9,436,825 bytes (414.700 seconds) and engineering 12,491,450 bytes (581.133 seconds). These release cuts include the supplied, sanitized application captures; the engineering cut pairs those captures with architecture and evaluation slides. Versioned query parameters were added after confirming Cloudflare had cached earlier unversioned video revisions. Both live response sizes match the locally rendered screenshot-based MP4s. The new `20260926-engineering-roadmap` cache key must be verified against the site after deployment.
+- Google Places and Routes: a live typed-origin query from “Indiranagar Metro Station, Bengaluru” returned five café listings and a live 550 m / 8 minute walking estimate. Results are Google directory data; menu, stock, safety, ordering, and seating facts remain synthetic. The browser geolocation control is opt-in; granting location permission and completing its browser E2E path remain unverified.
+- Gemini / Google ADK on Vertex AI: a live deployed recommendation call previously succeeded with tool outcomes and recorded activity. A browser attempt in the latest pass received non-JSON proxy content; the frontend now detects this and presents a useful error instead of a JSON parse exception. The local deterministic guard and all three retrieval cases passed. Re-test live browser generation under a stable network before claiming that particular UI path is verified in this release.
+- Google Sign-In: configured on the custom domain and backend verifies ID tokens. OAuth audience remains External / Testing; protected Ops/Owner access is limited to registered testers. Unauthenticated Ops denial was verified; a fresh end-to-end sign-in was not repeated in this pass.
+- Firestore: hosted demo adapter uses a single synthetic-state snapshot. It is not a production multi-tenant or transactional inventory design.
+- Google Gemini Text-to-Speech and screenshot video edit: the `en-IN` Despina tracks are 414.672 seconds / 12 product scenes and 581.110 seconds / 14 engineering scenes. The owner supplied eight actual CaféMesh captures spanning Customer, location permission, Google sign-in, Operations, Owner, and Vision. Each walkthrough uses screen captures matched to its narration scene; account email/identity is masked in derivative video frames. Original unredacted captures were not copied into the repository. Local rendering verified H.264 1280×720 video with AAC narration; audio/video duration deltas are 0.028s and 0.023s. Scene changes align to narration paragraphs, not individual words; these are still screenshots, not continuous recordings or word-level lip sync.
+- Docker image build passed before this deployment; Cloud Run then built and deployed the application source successfully.
+
+## Evaluation and agentic-AI boundary
+
+Four ADK agent definitions coordinate Concierge, Taste/Safety, Visit/Order, and Ops/Owner responsibilities. Backend tools remain authoritative for structured menu facts, deterministic safety rules, order confirmation, transitions, and manager approval. A model may suggest or explain but cannot authorize those effects.
+
+The project has deterministic policy tests and three versioned menu retrieval goldens. It does not currently have a broad reviewed golden-answer corpus, an LLM-as-judge pipeline, production trace-quality scoring, vector search, or a document RAG service. These are described as future evaluation/retrieval work in the engineering walkthrough and [retrieval strategy](12-RETRIEVAL-AND-RAG.md); they are not presented as implemented. Current monitoring is an application operations dashboard over demo activity, not a production SLO/alerting service.
+
+## Remaining limitations
+
+- Public user actions use synthetic café business data. Maps directory and route data are live.
+- Consent screen is in Testing; admin/reviewer sign-in is restricted to listed test users.
+- Firestore snapshot state is suitable for this isolated demo only; production needs tenant isolation, normalized records, and transactional stock reservations.
+- Device location is only sent after explicit browser permission; that browser E2E path is not verified. Typed landmark discovery is verified.
+- Allergy-sensitive free-form Gemini prose is withheld because a live response previously drifted on explicit constraints. Deterministic records and policy checks remain the source of candidate eligibility; the app never guarantees allergy safety.
+- RAG is not implemented. It should be added only for governed, cited café documents such as SOPs, accessibility policies, or service rules. Price, availability, allergen, stock, and queue facts should continue to come from authoritative structured tools.
+- No LLM-as-judge pipeline, Model Armor, BigQuery analytics, interactive voice chat, production SLO monitoring, payment/POS integration, or automatic prompt/policy promotion is implemented.
+- The two videos are narrated and paragraph-synchronized screenshot walkthroughs built from owner-supplied point-in-time captures. They are not word-level lip sync or continuous screen recordings. The capture frames correspond to the supplied dates and may not reflect later state changes.

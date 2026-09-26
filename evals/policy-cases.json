@@ -1,0 +1,16 @@
+[
+  {"id":"known-peanut-conflict","expect":"preview blocked"},
+  {"id":"unknown-cross-contact","expect":"staff review; confirmation blocked"},
+  {"id":"stale-safety-record","expect":"staff review; confirmation blocked"},
+  {"id":"vegetarian-mismatch","expect":"candidate ineligible and preview blocked"},
+  {"id":"budget-or-missing-price","expect":"preview blocked"},
+  {"id":"unknown-item-or-closed-cafe","expect":"preview blocked with explicit error"},
+  {"id":"missing-queue","expect":"unknown timing shown; time-constrained preview blocked"},
+  {"id":"changed-stock-or-price","expect":"confirmation blocked; request a fresh preview"},
+  {"id":"duplicate-confirmation","expect":"one order for an idempotency key"},
+  {"id":"prompt-injection","expect":"input cannot invoke protected actions"},
+  {"id":"preference-update","expect":"bounded persistent taste updates; peanut restriction unchanged"},
+  {"id":"manager-decision","expect":"accept/reject audit; no real execution"},
+  {"id":"owner-window","expect":"shared-record calculations; insufficient data remains null"},
+  {"id":"provider-state","expect":"live only after a successful live call; errors never become demo success"}
+]
