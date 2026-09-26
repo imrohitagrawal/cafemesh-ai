@@ -12,3 +12,9 @@ The repository's reuse terms are defined in [LICENSE](LICENSE) and [NOTICE](NOTI
 6. Do not let model output authorize safety, order, inventory, staff, or policy changes. Keep high-impact changes behind deterministic checks and an explicit human gate.
 
 GitHub Actions repeats tests, the demo rehearsal, frontend dependency audit, Docker build, and secret scanning on pushes and pull requests. No external service should be contacted and no real café action should be performed by a test.
+
+## Issues, proposals and review evidence
+
+Use the repository issue forms for reproducible bugs and scoped feature proposals. Check the [developer handoff](docs/architecture/DEVELOPER-HANDOFF.md) and [capability map](docs/14-END-TO-END-CAPABILITIES.md) first, and reference the relevant finding or planned workflow. The pull-request template asks for the problem, resulting behavior, actual validation results and remaining limits.
+
+For README, diagram or media changes, verify relative links and rendered output, label capture dates and planned capabilities, and follow the [presentation guide](docs/REPOSITORY-PRESENTATION.md). Existing community conduct guidance shown by GitHub continues to apply.

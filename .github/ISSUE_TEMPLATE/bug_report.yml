@@ -1,0 +1,48 @@
+name: Bug report
+description: Report a reproducible problem in the demo, documentation, or diagrams.
+title: "[Bug]: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use synthetic data only. Do not include secrets, customer records, or unredacted account screenshots. For vulnerabilities, follow SECURITY.md instead of posting details here.
+  - type: input
+    id: revision
+    attributes:
+      label: Commit and environment
+      description: Commit SHA or branch, local or hosted, and relevant browser/runtime versions.
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Affected area
+      options:
+        - Customer
+        - Operations
+        - Owner
+        - Identity or provider integration
+        - Persistence or learning
+        - Documentation, diagrams or media
+        - Build or CI
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to reproduce
+      description: Include synthetic inputs and the shortest repeatable sequence.
+    validations:
+      required: true
+  - type: textarea
+    id: expected_actual
+    attributes:
+      label: Expected and actual behavior
+      description: Distinguish the product requirement from the current implementation.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence and related finding
+      description: Sanitized logs/screenshots, failing test, and audit ID F01–F15 if relevant. Omit credentials and personal information.
