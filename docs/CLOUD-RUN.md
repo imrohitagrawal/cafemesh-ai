@@ -10,7 +10,7 @@ OAuth branding and Google's required API Services User Data Policy agreement hav
 
 ## Deployment
 
-The public synthetic demo is served by Cloud Run service `cafemesh-ai` in `asia-south1`; the latest verified revision is `cafemesh-ai-00011-ck2`. The public link is `https://cafemesh.stackclimb.com`, routed through the Cloudflare Worker `cafemesh-origin-proxy` to the canonical origin `https://cafemesh-ai-lbqubrb5jq-el.a.run.app`. `/api/health` and the custom-domain app have returned HTTP 200 on 26 September 2026. Revision `cafemesh-ai-00011-ck2` serves 100% of traffic.
+The public synthetic demo is served by Cloud Run service `cafemesh-ai` in `asia-south1`; the latest verified revision is `cafemesh-ai-00012-f7q`. The public link is `https://cafemesh.stackclimb.com`, routed through the Cloudflare Worker `cafemesh-origin-proxy` to the canonical origin `https://cafemesh-ai-lbqubrb5jq-el.a.run.app`. `/api/health` and the custom-domain app have returned HTTP 200 on 26 September 2026. Revision `cafemesh-ai-00012-f7q` serves 100% of traffic.
 
 The owner OAuth client authorizes the Cloud Run origin and custom domain. A live Google Identity Services attempt from the canonical URL reached Google's account chooser after the origin was added, and the owner test account signed in successfully. OAuth is still External / Testing, so only its listed tester can access protected views.
 
@@ -38,7 +38,7 @@ gcloud run deploy cafemesh-ai \
 
 Public Cloud Run ingress allows anyone with the URL to use customer discovery and synthetic ordering. `CAFEMESH_REQUIRE_GOOGLE_AUTH=true` protects reviewer endpoints with Google ID-token verification. Cloud Run authentication is public at the service layer; application authentication protects operations/owner views and decisions. The runtime service account uses attached identity/ADC; no service-account key is uploaded. The Cloud Build identity has the Cloud Run source builder role and writer access scoped to the source-deploy repository; runtime access is granted separately. Source deployment and API calls use the project's existing billing. `--max 1` and `--concurrency 1` keep the Firestore snapshot approach within hackathon scope; it is not a production multi-tenant store.
 
-Earlier checks on revision `cafemesh-ai-00006-s9n` verified the API, videos, authentication gate, live Places/Routes, and a live Vertex/ADK call. Revision `cafemesh-ai-00008-kfs` verified typed-landmark discovery at the custom hostname; `cafemesh-ai-00011-ck2` includes the current search, retrieval, error-handling, and walkthrough updates: results and walking route were returned near Indiranagar Metro Station, Bengaluru. The public Vision page exposes both walkthrough players. Admin access remains limited to listed OAuth testers while the consent app is in Testing.
+Earlier checks on revision `cafemesh-ai-00006-s9n` verified the API, videos, authentication gate, live Places/Routes, and a live Vertex/ADK call. Revision `cafemesh-ai-00008-kfs` verified typed-landmark discovery at the custom hostname; Revisions 11 and 12 include current search, retrieval, error handling, licensing attribution, and walkthrough updates. The latest public checks verified HTTP 200 health/config/homepage and both current walkthrough assets, a 401 response from Ops without an ID token, and 100% traffic on revision 12. Results and walking route were previously returned near Indiranagar Metro Station, Bengaluru. Admin access remains limited to listed OAuth testers while the consent app is in Testing.
 
 ## Limits
 

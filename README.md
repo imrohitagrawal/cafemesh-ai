@@ -8,8 +8,8 @@ CaféMesh AI is a Google Cloud hosted hackathon application connecting customer 
 
 - **Public source repository:** [github.com/imrohitagrawal/cafemesh-ai](https://github.com/imrohitagrawal/cafemesh-ai)
 - **Live application:** [cafemesh.stackclimb.com](https://cafemesh.stackclimb.com)
-- **Product walkthrough video:** [MP4](https://cafemesh.stackclimb.com/videos/cafemesh-product-walkthrough.mp4?v=20260926-engineering-roadmap) · [source audio](frontend/public/audio/cafemesh-product-walkthrough.mp3) · [narration script](media/cafemesh-product-walkthrough.txt)
-- **Engineering walkthrough video:** [MP4](https://cafemesh.stackclimb.com/videos/cafemesh-engineering-walkthrough.mp4?v=20260926-engineering-roadmap) · [source audio](frontend/public/audio/cafemesh-engineering-walkthrough.mp3) · [narration script](media/cafemesh-engineering-walkthrough.txt)
+- **Product walkthrough video:** [MP4](https://cafemesh.stackclimb.com/videos/cafemesh-product-walkthrough.mp4?v=20260926-public-release) · [source audio](frontend/public/audio/cafemesh-product-walkthrough.mp3) · [narration script](media/cafemesh-product-walkthrough.txt)
+- **Engineering walkthrough video:** [MP4](https://cafemesh.stackclimb.com/videos/cafemesh-engineering-walkthrough.mp4?v=20260926-public-release) · [source audio](frontend/public/audio/cafemesh-engineering-walkthrough.mp3) · [narration script](media/cafemesh-engineering-walkthrough.txt)
 - **Short demo video:** [MP4](media/cafemesh-two-minute-demo.mp4)
 - **Screenshots:** sanitized owner-supplied captures used in the videos are mapped in [media/provided-app-screenshots/README.md](media/provided-app-screenshots/README.md). Unredacted originals are intentionally outside this repository.
 
