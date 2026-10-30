@@ -40,9 +40,10 @@ jobs:
       - name: Export locked Python runtime dependencies
         run: uv export --locked --no-dev --no-emit-project --format requirements-txt --output-file /tmp/cafemesh-requirements.txt
       - name: Audit Python dependencies
-        # CVE-2026-114603 (opentelemetry-api, medium) is fixed only in 1.45.1, but every
-        # google-adk release caps opentelemetry-api below it (1.39.1: <=1.41.1; 2.13.0: <=1.44).
-        # Remove this exception once a google-adk release allows opentelemetry-api>=1.45.1.
+        # CVE-2026-114603 (opentelemetry-api, medium) is fixed only in 1.45.1. pyproject.toml
+        # allows google-adk>=1.39.1,<2; 1.39.1, the newest 1.x, caps opentelemetry-api at
+        # <=1.41.1 (2.x releases up to 2.13.0 cap it at <=1.44).
+        # Remove this exception when uv.lock locks opentelemetry-api>=1.45.1.
         run: uvx --from pip-audit pip-audit --strict --ignore-vuln CVE-2026-114603 --requirement /tmp/cafemesh-requirements.txt
       - name: Build deployment container
         run: docker build --tag cafemesh-ai:ci .
